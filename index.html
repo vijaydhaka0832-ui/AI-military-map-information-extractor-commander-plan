@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Base Information Extractor & Commander Tactical Planner - Enterprise Edition</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Enterprise Tactical Dashboard CSS -->
+  <link rel="stylesheet" href="/css/tactical.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       WINDOW DESKTOP TITLE BAR (ENTERPRISE EDITION)
+       ========================================================================= -->
+  <div class="window-title-bar">
+    <div class="window-title-left">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      <span>AI Base Information Extractor & Commander Tactical Planner - Enterprise Edition</span>
+    </div>
+    <div class="window-controls">
+      <button class="win-btn" title="Minimize">─</button>
+      <button class="win-btn" title="Maximize">□</button>
+      <button class="win-btn close" title="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MAIN APPLICATION CONTAINER (LEFT SIDEBAR + MAIN WORKSPACE)
+       ========================================================================= -->
+  <div class="app-container">
+
+    <!-- =======================================================================
+         LEFT SIDEBAR (ENTERPRISE MENU WITH PROJECT SPECIFIC ICONS)
+         ======================================================================= -->
+    <aside class="left-sidebar">
+      
+      <!-- Top Brand Logo -->
+      <div class="sidebar-brand">
+        <div class="brand-badge-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2">
+            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+            <circle cx="12" cy="5" r="2"></circle>
+            <path d="M12 7v4"></path>
+            <line x1="8" y1="16" x2="8" y2="16"></line>
+            <line x1="16" y1="16" x2="16" y2="16"></line>
+          </svg>
+        </div>
+        <div class="brand-name">Tactical AI</div>
+      </div>
+
+      <!-- Navigation Menu (All icons as per project name) -->
+      <nav class="sidebar-nav">
+        <!-- 1. Dashboard (Active Solid Blue Pill) -->
+        <button class="nav-item active" onclick="window.app.switchTab('dashboard', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <span class="nav-text">Dashboard</span>
+        </button>
+
+        <!-- 2. Information Extractor -->
+        <button class="nav-item" onclick="window.app.switchTab('extractor', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <path d="M11 8v6"></path>
+              <path d="M8 11h6"></path>
+            </svg>
+          </div>
+          <span class="nav-text">Information Extractor</span>
+        </button>
+
+        <!-- 3. Commander Planning -->
+        <button class="nav-item" onclick="window.app.switchTab('plan', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <span class="nav-text">Commander Plan</span>
+        </button>
+
+        <!-- 4. Grid Reference (GR) & Metadata -->
+        <button class="nav-item" onclick="window.app.switchTab('gr', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="22" y1="12" x2="18" y2="12"></line>
+              <line x1="6" y1="12" x2="2" y2="12"></line>
+              <line x1="12" y1="6" x2="12" y2="2"></line>
+              <line x1="12" y1="22" x2="12" y2="18"></line>
+            </svg>
+          </div>
+          <span class="nav-text">GR & Metadata</span>
+        </button>
+
+        <!-- 5. Territory & Sector Mapping -->
+        <button class="nav-item" onclick="window.app.switchTab('territory', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+          </div>
+          <span class="nav-text">Territory Mapping</span>
+        </button>
+
+        <!-- 6. Path Planning & Distance Math -->
+        <button class="nav-item" onclick="window.app.switchTab('path', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          <span class="nav-text">Path Planning</span>
+        </button>
+
+        <!-- 7. Mission Batch History -->
+        <button class="nav-item" onclick="window.app.switchTab('history', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <span class="nav-text">Batch History</span>
+        </button>
+
+        <!-- 8. Settings & Specs -->
+        <button class="nav-item" onclick="window.app.switchTab('settings', this)">
+          <div class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <span class="nav-text">Settings & Specs</span>
+        </button>
+      </nav>
+
+      <!-- Bottom Exit Application Button -->
+      <div class="sidebar-bottom">
+        <button class="btn-exit" onclick="window.app.showToast('Exit Application selected.')">
+          <div class="exit-square-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <line x1="9" y1="12" x2="15" y2="12"></line>
+            </svg>
+          </div>
+          <span>Exit Application</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- =======================================================================
+         RIGHT MAIN WORKSPACE (TOP HEADER CARD + 100% CENTER TACTICAL MAP)
+         ======================================================================= -->
+    <main class="main-workspace">
+
+      <!-- =====================================================================
+           TOP HEADER BANNER
+           - Left: White rounded container with Unit Crest Shield
+           - Center: Bold Cyan Title + Subtitle
+           - Right: White rounded container with Indian Army Emblem
+           ===================================================================== -->
+      <header class="enterprise-header-card">
+        <!-- Left Emblem: Unit Crest Shield (media_1789712321612.jpg) -->
+        <div class="emblem-container left-emblem" title="Unit Formation Sign">
+          <img src="/images/unit_crest.jpg" alt="Unit Crest Shield" class="emblem-img">
+        </div>
+
+        <!-- Center Brand & Project Title -->
+        <div class="header-titles">
+          <h1 class="main-project-title" data-title="AI BASE INFORMATION EXTRACTOR">
+            AI BASE INFORMATION EXTRACTOR
+          </h1>
+          <p class="main-project-subtitle">
+            FROM MILITARY MAP AND PLOT THE COMMANDER PLAN ON MILITARY MAP
+          </p>
+        </div>
+
+        <!-- Right Emblem: Indian Army Insignia (media_1789712329419.jpg) -->
+        <div class="emblem-container right-emblem" title="Indian Army Crest">
+          <img src="/images/indian_army.jpg" alt="Indian Army Emblem" class="emblem-img">
+        </div>
+      </header>
+
+      <!-- =====================================================================
+           CENTER MAP WORKSPACE (OCCUPIES 100% OF REMAINING WORKSPACE)
+           ===================================================================== -->
+      <section class="center-map-container">
+        <div class="map-inner-frame">
+          
+          <!-- Top Floating Map HUD -->
+          <div class="map-top-bar">
+            <div class="map-top-controls-left">
+              <select id="map-select" class="map-mode-select" onchange="window.app.onMapSelectChange(this.value)">
+                <option value="indian_military_map.jpg" selected>Topographical Map (Indian 45R)</option>
+                <option value="default_military_map.png">Sector Alpha (Sheet 78 J/4)</option>
+                <option value="sector_bravo_map.png">Sector Bravo (Sheet 53 H/9)</option>
+              </select>
+
+              <button class="tool-icon-btn active" id="btn-tool-pan" title="Pan Mode" onclick="window.app.setToolMode('pan')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
+                  <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"></path>
+                  <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path>
+                  <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path>
+                </svg>
+              </button>
+
+              <button class="tool-icon-btn" id="btn-tool-zoom" title="Fit to Screen" onclick="window.app.canvas.fitToScreen(); window.app.canvas.render();">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+
+              <!-- Live 6-Figure Military Grid Reference (GR) Badge (READ RIGHT, THEN UP) -->
+              <div class="live-gr-badge" id="live-gr-container" title="Military Grid Reference (READ RIGHT, THEN UP: Easting 3 Digits + Northing 3 Digits)">
+                <span class="live-gr-dot"></span>
+                <span class="live-gr-label">6-FIG GR:</span>
+                <span class="live-gr-value" id="live-cursor-gr6">------</span>
+                <span class="live-gr-breakdown" id="live-cursor-breakdown">(E: --- | N: ---)</span>
+              </div>
+            </div>
+
+            <!-- Floating North Arrow -->
+            <div class="map-north-arrow">
+              <svg width="14" height="18" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 20 22 12 17 4 22 12 2" fill="#ffffff"></polygon>
+              </svg>
+              <span>N</span>
+            </div>
+          </div>
+
+          <!-- Right Side Tactical Controls (Fit Map & Zoom In/Out) -->
+          <div class="map-right-controls">
+            
+            <!-- 1. Fit & Fix Map Button -->
+            <button class="map-ctrl-btn" id="btn-map-fit" title="Fit Map to Space (Fixed)" onclick="window.app.fitAndFixMap()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span class="ctrl-btn-label">Fit</span>
+            </button>
+
+            <!-- 2. Zoom In / Out Controls Widget -->
+            <div class="map-zoom-widget" title="Zoom In / Out">
+              <button class="zoom-step-btn" title="Zoom In (+)" onclick="window.app.zoomInMap()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+              <div class="zoom-pct-readout" id="zoom-level-text" title="Current Zoom">100%</div>
+              <button class="zoom-step-btn" title="Zoom Out (-)" onclick="window.app.zoomOutMap()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Main High-Precision Tactical Canvas -->
+          <canvas id="tactical-canvas"></canvas>
+
+          <!-- Bottom Scale Bar -->
+          <div class="map-bottom-scale">
+            <span>0 &nbsp; 1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5 km &nbsp; (Scale 1:50,000)</span>
+          </div>
+
+          <!-- Inset Radar Mini-Map PIP -->
+          <div class="mini-map-pip" title="Theatre Overview Radar">
+            <canvas id="minimap-canvas"></canvas>
+          </div>
+
+          <!-- GR Inspection Popover -->
+          <div id="gr-popover" class="gr-inspection-popover">
+            <div class="popover-header">
+              <div class="popover-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="22" y1="12" x2="18" y2="12"></line>
+                  <line x1="6" y1="12" x2="2" y2="12"></line>
+                  <line x1="12" y1="6" x2="12" y2="2"></line>
+                  <line x1="12" y1="22" x2="12" y2="18"></line>
+                </svg>
+                Tactical GR Inspection
+              </div>
+              <button class="popover-close" onclick="window.app.closeGRInspection()">✕</button>
+            </div>
+
+            <div class="gr-hero-readout">
+              <div class="gr-box">
+                <div class="gr-box-lbl">6-Figure GR</div>
+                <div id="pop-gr-6" class="gr-box-val">692 936</div>
+              </div>
+              <div class="gr-box">
+                <div class="gr-box-lbl">8-Figure GR</div>
+                <div id="pop-gr-8" class="gr-box-val">6926 9364</div>
+              </div>
+            </div>
+
+            <div class="popover-detail-row">
+              <span class="lbl">UTM Coordinates:</span>
+              <span id="pop-utm-coords" class="val">E: 69.26 km | N: 93.64 km</span>
+            </div>
+            <div class="popover-detail-row">
+              <span class="lbl">Elevation:</span>
+              <span id="pop-elevation" class="val">440 m</span>
+            </div>
+            <div class="popover-detail-row">
+              <span class="lbl">Nearest Feature:</span>
+              <span id="pop-terrain" class="val" style="color: var(--accent-green); font-weight: bold;">Central Apartment Bridge</span>
+            </div>
+            <div class="popover-detail-row">
+              <span class="lbl">Trafficability:</span>
+              <span id="pop-trafficability" class="val">Class 70 Metalled</span>
+            </div>
+
+            <div id="pop-tactical" class="popover-terrain-assessment">
+              Strategic choke point with direct line of communication across sector.
+            </div>
+
+            <div class="popover-action-row">
+              <button class="btn-tactical btn-primary btn-sm" style="flex: 1;" onclick="window.app.deployUnitFromInspection()">
+                Deploy Unit Here
+              </button>
+              <button class="btn-tactical btn-sm" onclick="window.app.closeGRInspection()">
+                Dismiss
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Tactical Toast Notification -->
+  <div id="tactical-toast" style="display: none;">
+    Operational alert.
+  </div>
+
+  <!-- Hidden elements for test and API compatibility -->
+  <div style="display: none;">
+    <span id="val-utm">45R</span>
+    <span id="val-scale">1 : 50,000</span>
+    <span id="val-dim">1024 × 689</span>
+    <span id="val-acc">98%</span>
+    <span id="gr-sel-val">45R 6926 9364</span>
+    <span id="gr-lat">23° 12' 45" N</span>
+    <span id="gr-lon">74° 32' 18" E</span>
+    <span id="gr-elev">440 m</span>
+    <span id="gr-feat">Central Apartment Bridge</span>
+    <span id="card-count-villages">10</span>
+    <span id="card-count-bridges">5</span>
+    <span id="card-count-rivers">1 (10.6 km)</span>
+    <span id="card-count-roads">4 (33 km)</span>
+    <span id="card-count-forests">7 Peaks</span>
+    <span id="card-count-rail">1 (7.4 km)</span>
+    <span id="card-count-ponds">3 Waterbodies</span>
+    <div id="commander-plan-list"></div>
+    <span id="path-calc-distance">2.96 km</span>
+    <span id="path-calc-bearing">111.4° (1981 mils)</span>
+    <span id="path-calc-time">4 mins</span>
+    <span id="path-calc-waypoints">45R 692 936 ➔ 45R 704 927</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/gr-engine.js"></script>
+  <script src="/js/pathing-math.js"></script>
+  <script src="/js/territory.js"></script>
+  <script src="/js/commander-plan.js"></script>
+  <script src="/js/tactical-canvas.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "id": "plan_ec1cdb02",
+  "name": "OPERATION TEST SHIELD",
+  "map_file": "indian_military_map.jpg",
+  "timestamp": "2026-09-19T12:00:00Z",
+  "units": [
+    {
+      "id": "u1",
+      "name": "HQ",
+      "coords": [
+        285,
+        75
+      ],
+      "gr6": "673 975"
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "wp1",
+      "type": "start",
+      "name": "Start",
+      "coords": [
+        285,
+        75
+      ],
+      "gr6": "673 975"
+    },
+    {
+      "id": "wp2",
+      "type": "objective",
+      "name": "Obj Alpha",
+      "coords": [
+        255,
+        595
+      ],
+      "gr6": "668 915"
+    }
+  ],
+  "total_distance_km": "5.4",
+  "territories": {},
+  "notes": "",
+  "metadata": {
+    "utm_zone": "45R",
+    "scale": "1:50,000",
+    "unit_count": 1,
+    "waypoint_count": 2
+  }
+}

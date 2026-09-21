@@ -1,0 +1,38 @@
+{
+  "id": "plan_e6238c49",
+  "name": "OPERATION INTEGRATION TEST",
+  "map_file": "indian_military_map.jpg",
+  "timestamp": null,
+  "units": [
+    {
+      "coords": [
+        500,
+        500
+      ],
+      "id": "test_plt_1",
+      "name": "Platoon Test"
+    }
+  ],
+  "territories": {
+    "blue": [
+      [
+        100,
+        100
+      ],
+      [
+        200,
+        100
+      ],
+      [
+        200,
+        200
+      ]
+    ]
+  },
+  "notes": "",
+  "metadata": {
+    "utm_zone": "45R",
+    "scale": "1:50,000",
+    "unit_count": 1
+  }
+}
